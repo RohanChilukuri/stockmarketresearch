@@ -9,6 +9,6 @@ How to use the program:
 3. Type "pip install -r requirements.txt" to install the external dependencies required to run the program.
 4. Type "python3 main.py" to run the program.
 5. Input requested information
-6. View results - text in the command line window and two graphs in separate windows
+6. View program output, text in the command line window and two graphs in separate windows
 
 For further information, read the project report titled "Buy-and-Hold vs Market-Timing".
