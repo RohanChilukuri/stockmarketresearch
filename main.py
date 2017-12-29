@@ -1,3 +1,8 @@
+#Analyze 150 years of stock market data to determine whether active trading
+#using any market-timing strategies would have beaten a passive buy-and-hold strategy
+
+#MAIN PROGRAM
+
 import csv
 import math
 import os.path
@@ -10,14 +15,9 @@ import formulas
 import typical_investor
 import time_plot_xaxis
 
-#Analyze 150 years of stock market data to determine whether active trading
-#using any market-timing strategies would have beaten a passive buy-and-hold strategy
-
-#MAIN PROGRAM
-
 #Read in stock market data from 1871 to 2017
 
-#Specify path to csv file (not needed if the file is in the same directory)
+#Specify path to csv file (not needed if the file is in the same directory) - remove # in following two lines
 #userhome = os.path.expanduser('~')
 #csvfile = os.path.join(userhome, 'Desktop', 'StockMarketResearch', 'Stock Market Data.csv')
 with open('Stock Market Data.csv', "r") as csvfile:
@@ -120,10 +120,10 @@ fedruleendbalance = round(fedrule[len(fedrule)-1], 2)
 
 #Confirm validity of Buy-and-Hold S&P Comp rule for the typical investor that invests for their investment horizon
 typicalinvestor = typical_investor.TypicalInvestor(initialinvestment, dates, monthlyreturn, monthlyinvestment, annualpe, medianpe, annualyield, medianyield, annualGS10, monthlyGS10, earningsyield, investmenthorizon)
-#Output array to csv file if desired
+#Output array to csv file if desired (remove # in next line)
 #np.savetxt("Stock Research.csv", typicalinvestor, delimiter=",")
 
-#Print end balances and CAGR of each rule
+#Print total investment, end balances, and CAGR of each rule
 print ("Total investment: $" + str(totalinvestment))
 print ("Total Balance: Buy-and-Hold S&P Comp: $" + str(buyandholdspcompruleendbalance) + ". CAGR: " + str(formulas.CAGR(buyandholdspcompruleendbalance, totalinvestment, period)) + "%")
 print ("Total Balance: Buy-and-Hold GS10: $" + str(buyandholdGS10ruleendbalance) + ". CAGR: " + str(formulas.CAGR(buyandholdGS10ruleendbalance, totalinvestment, period)) + "%")
