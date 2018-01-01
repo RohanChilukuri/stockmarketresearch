@@ -11,4 +11,4 @@ How to use the program:
 5. Input requested information
 6. View program output, text in the command line window and two graphs in separate windows
 
-For further information, read the project report titled "Buy-and-Hold vs Market-Timing".
+For further information, read the project report titled "Market-Timing".
