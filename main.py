@@ -17,7 +17,7 @@ import time_plot_xaxis
 
 #Read in stock market data from 1871 to 2017
 
-#Specify path to csv file (not needed if the file is in the same directory) - remove # in following two lines
+#Specify path to csv file (not needed if file in the same directory) - remove # in following two lines
 #userhome = os.path.expanduser('~')
 #csvfile = os.path.join(userhome, 'Desktop', 'StockMarketResearch', 'Stock Market Data.csv')
 with open('stock_market_data.csv', "r") as csvfile:
