@@ -124,7 +124,7 @@ typicalinvestor = typical_investor.TypicalInvestor(initialinvestment, dates, mon
 #np.savetxt("Stock Research.csv", typicalinvestor, delimiter=",")
 
 #Print total investment, end balances, and CAGR of each rule
-print ("Total investment: $" + str(totalinvestment))
+print ("Total investment:" + ' ${:,.0f}'.format(totalinvestment))
 print ("Buy-and-Hold S&P Comp - End Balance:" + ' ${:,.0f}'.format(buyandholdspcompruleendbalance) + " / CAGR: " + str(formulas.CAGR(buyandholdspcompruleendbalance, totalinvestment, period)) + "%")
 print ("Buy-and-Hold GS10 - End Balance:" + ' ${:,.0f}'.format(buyandholdGS10ruleendbalance) + " / CAGR: " + str(formulas.CAGR(buyandholdGS10ruleendbalance, totalinvestment, period)) + "%")
 print ("P/E Rule - End Balance:" + ' ${:,.0f}'.format(peruleendbalance) + " / CAGR: " + str(formulas.CAGR(peruleendbalance, totalinvestment, period)) + "%")
