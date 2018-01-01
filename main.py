@@ -20,7 +20,7 @@ import time_plot_xaxis
 #Specify path to csv file (not needed if the file is in the same directory) - remove # in following two lines
 #userhome = os.path.expanduser('~')
 #csvfile = os.path.join(userhome, 'Desktop', 'StockMarketResearch', 'Stock Market Data.csv')
-with open('Stock Market Data.csv', "r") as csvfile:
+with open('stock_market_data.csv', "r") as csvfile:
     reader = csv.DictReader(csvfile)
     data = {}
     for row in reader:
@@ -125,15 +125,15 @@ typicalinvestor = typical_investor.TypicalInvestor(initialinvestment, dates, mon
 
 #Print total investment, end balances, and CAGR of each rule
 print ("Total investment: $" + str(totalinvestment))
-print ("Total Balance: Buy-and-Hold S&P Comp: $" + str(buyandholdspcompruleendbalance) + ". CAGR: " + str(formulas.CAGR(buyandholdspcompruleendbalance, totalinvestment, period)) + "%")
-print ("Total Balance: Buy-and-Hold GS10: $" + str(buyandholdGS10ruleendbalance) + ". CAGR: " + str(formulas.CAGR(buyandholdGS10ruleendbalance, totalinvestment, period)) + "%")
-print ("Total Balance: P/E Rule: $" + str(peruleendbalance) + ". CAGR: " + str(formulas.CAGR(peruleendbalance, totalinvestment, period)) + "%")
-print ("Total Balance: Yield Rule: $" + str(yieldruleendbalance) + ". CAGR: " + str(formulas.CAGR(yieldruleendbalance, totalinvestment, period)) + "%")
-print ("Total Balance: Yield & GS10 Rule: $" + str(yieldandGS10ruleendbalance) + ". CAGR: " + str(formulas.CAGR(yieldandGS10ruleendbalance, totalinvestment, period)) + "%")
-print ("Total Balance: P/E & Yield Rule: $" + str(peandyieldruleendbalance ) + ". CAGR: " + str(formulas.CAGR(peandyieldruleendbalance, totalinvestment, period)) + "%")
-print ("Total Balance: P/E or Yield Rule: $" + str(peoryieldruleendbalace) + ". CAGR: " + str(formulas.CAGR(peoryieldruleendbalace, totalinvestment, period)) + "%")
-print ("Total Balance: P/E & Yield & GS10 Rule: $" + str(peandyieldandGS10ruleendbalance) + ". CAGR: " + str(formulas.CAGR(peandyieldandGS10ruleendbalance, totalinvestment, period)) + "%")
-print ("Total Balance: Fed Rule: $" + str(fedruleendbalance) + ". CAGR: " + str(formulas.CAGR(fedruleendbalance, totalinvestment, period)) + "%")
+print ("Buy-and-Hold S&P Comp - End Balance:" + ' ${:,.0f}'.format(buyandholdspcompruleendbalance) + " / CAGR: " + str(formulas.CAGR(buyandholdspcompruleendbalance, totalinvestment, period)) + "%")
+print ("Buy-and-Hold GS10 - End Balance:" + ' ${:,.0f}'.format(buyandholdGS10ruleendbalance) + " / CAGR: " + str(formulas.CAGR(buyandholdGS10ruleendbalance, totalinvestment, period)) + "%")
+print ("P/E Rule - End Balance:" + ' ${:,.0f}'.format(peruleendbalance) + " / CAGR: " + str(formulas.CAGR(peruleendbalance, totalinvestment, period)) + "%")
+print ("Yield Rule - End Balance:" + ' ${:,.0f}'.format(yieldruleendbalance) + " / CAGR: " + str(formulas.CAGR(yieldruleendbalance, totalinvestment, period)) + "%")
+print ("Yield & GS10 Rule - End Balance:" + ' ${:,.0f}'.format(yieldandGS10ruleendbalance) + " / CAGR: " + str(formulas.CAGR(yieldandGS10ruleendbalance, totalinvestment, period)) + "%")
+print ("P/E & Yield Rule - End Balance:" + ' ${:,.0f}'.format(peandyieldruleendbalance ) + " / CAGR: " + str(formulas.CAGR(peandyieldruleendbalance, totalinvestment, period)) + "%")
+print ("P/E or Yield Rule - End Balance:" + ' ${:,.0f}'.format(peoryieldruleendbalace) + " / CAGR: " + str(formulas.CAGR(peoryieldruleendbalace, totalinvestment, period)) + "%")
+print ("P/E & Yield & GS10 Rule - End Balance:" + ' ${:,.0f}'.format(peandyieldandGS10ruleendbalance) + " / CAGR: " + str(formulas.CAGR(peandyieldandGS10ruleendbalance, totalinvestment, period)) + "%")
+print ("Fed Rule - End Balance:" + ' ${:,.0f}'.format(fedruleendbalance) + " / CAGR: " + str(formulas.CAGR(fedruleendbalance, totalinvestment, period)) + "%")
 
 #Create a bar graph that plots the end balance of each investment strategy
 ind = ['Buy-and-Hold S&P Comp', 'Buy-and-Hold GS10', 'P/E Rule', 'Yield Rule',
@@ -141,16 +141,18 @@ ind = ['Buy-and-Hold S&P Comp', 'Buy-and-Hold GS10', 'P/E Rule', 'Yield Rule',
 indaxis = np.arange(len(ind))
 depaxis = (buyandholdspcompruleendbalance, buyandholdGS10ruleendbalance,
            peruleendbalance, yieldruleendbalance, yieldandGS10ruleendbalance,
-           peandyieldruleendbalance, peoryieldruleendbalace, peandyieldandGS10ruleendbalance, fedruleendbalance)
+           peandyieldruleendbalance, peoryieldruleendbalace, peandyieldandGS10ruleendbalance,
+           fedruleendbalance)
 fig, ax = plt.subplots(1, figsize=(12,8))
 bars = ax.bar(indaxis, depaxis)
-ax.set_ylabel("End Balance ($)")
-ax.set_xlabel("Trading Strategy")
+ax.set_ylabel('End Balance ($)')
+ax.set_xlabel('Investment Strategy')
 ax.set_xticks(indaxis)
 ax.set_xticklabels(ind, fontsize=8, weight='bold', rotation=15)
+ax.set_title('End Balance vs. Investment Strategy')
 for bar in bars:
     height = bar.get_height()
-    ax.text(bar.get_x()+bar.get_width()/2, height*1.002, "$"+ str(height), weight='bold', ha='center', va='bottom')
+    ax.text(bar.get_x()+bar.get_width()/2, height*1.002, '${:,.0f}'.format(height), weight='bold', ha='center', va='bottom')
 
 #Create a time plot that plots the change in balance of investment strategies over time
 plt.figure(2, figsize=(12,8))
